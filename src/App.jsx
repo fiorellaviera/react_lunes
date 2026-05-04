@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Sparkles, 
-  Ghost, 
-  Star, 
-  MonitorOff, 
-  Globe, 
-  DollarSign, 
-  Heart, 
-  ServerCrash, 
-  Activity,
-  ShieldCheck
-} from 'lucide-react';
+
+import  { useState } from 'react';
 
 // Componente para estadísticas clave (estilo kawaii)
-const StatCard = ({ icon: Icon, value, label, colorClass, bgIconClass }) => (
+const StatCard = ({ icon, value, label, colorClass, bgIconClass }) => (
   <div className="p-6 rounded-3xl border-2 border-white bg-white/60 backdrop-blur-md flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl shadow-lg shadow-pink-100/50">
     <div className={`p-4 rounded-full mb-4 shadow-sm ${bgIconClass} ${colorClass}`}>
-      <Icon size={32} strokeWidth={2.5} />
+      <span className="text-2xl">{icon}</span>
     </div>
     <h3 className="text-3xl font-black mb-1 text-pink-900">{value}</h3>
     <p className="text-sm text-pink-500 uppercase tracking-widest font-bold">{label}</p>
@@ -24,12 +13,12 @@ const StatCard = ({ icon: Icon, value, label, colorClass, bgIconClass }) => (
 );
 
 // Componente para la línea de tiempo (estilo kawaii)
-const TimelineItem = ({ step, title, description, icon: Icon, isLast }) => (
+const TimelineItem = ({ step, title, description, icon, isLast }) => (
   <div className="relative flex gap-6 pb-12">
     {!isLast && <div className="absolute left-6 top-14 bottom-0 w-1.5 bg-pink-100 rounded-full"></div>}
     
     <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-full bg-white border-4 border-pink-300 flex items-center justify-center text-pink-500 shadow-md shadow-pink-200">
-      <Icon size={24} strokeWidth={2.5} />
+      <span className="text-2xl">{icon}</span>
     </div>
     
     <div className="flex-grow pt-2">
@@ -63,7 +52,7 @@ export default function App() {
         {/* ENCABEZADO */}
         <header className="text-center mb-20 relative">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-pink-500 border-2 border-pink-200 text-sm font-bold mb-8 shadow-sm">
-            <Activity size={18} className="animate-bounce" />
+            <span className="animate-bounce text-2xl">⚡</span>
             <span>INCIDENTE SÚPER CRÍTICO ✨</span>
           </div>
           
@@ -79,28 +68,28 @@ export default function App() {
         {/* ESTADÍSTICAS GLOBALES */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           <StatCard 
-            icon={DollarSign} 
+            icon="💸" 
             value="$10M" 
             label="USD Sustraídos" 
             colorClass="text-emerald-500"
             bgIconClass="bg-emerald-100"
           />
           <StatCard 
-            icon={MonitorOff} 
+            icon="🖥️" 
             value="9.000+" 
             label="PCs Dormidos" 
             colorClass="text-rose-500"
             bgIconClass="bg-rose-100"
           />
           <StatCard 
-            icon={Globe} 
+            icon="🌎" 
             value="Hong Kong" 
             label="Destino" 
             colorClass="text-blue-500"
             bgIconClass="bg-blue-100"
           />
           <StatCard 
-            icon={ServerCrash} 
+            icon="⚡" 
             value="SWIFT" 
             label="Red Vulnerada" 
             colorClass="text-purple-500"
@@ -113,7 +102,7 @@ export default function App() {
           {/* LÍNEA DE TIEMPO (Izquierda) */}
           <section className="lg:col-span-7">
             <div className="mb-10 flex items-center gap-3 bg-white/50 inline-flex p-3 rounded-2xl border border-pink-100">
-              <Star className="text-yellow-400 fill-yellow-400" size={28} />
+              <span className="text-yellow-400 text-2xl">✨</span>
               <h2 className="text-3xl font-black text-pink-800">Cronología del Ataque</h2>
             </div>
             
@@ -122,25 +111,25 @@ export default function App() {
                 step={1}
                 title="Infiltración Silenciosa"
                 description="Los atacantes (como pequeños fantasmitas invisibles) lograron penetrar la red del banco semanas antes, mapeando todo sin hacer ruido."
-                icon={Ghost}
+                icon="👻"
               />
               <TimelineItem 
                 step={2}
                 title="El Señuelo Brillante"
                 description="Se despliega un malware que borra datos y apaga miles de computadoras de sucursales. El caos inunda las oficinas de soporte."
-                icon={Sparkles}
+                icon="✨"
               />
               <TimelineItem 
                 step={3}
                 title="El Robo Real"
                 description="Mientras todos intentaban despertar a los computadores dormidos, los hackers aprovecharon para enviar transferencias por la red SWIFT."
-                icon={Heart}
+                icon="💖"
               />
               <TimelineItem 
                 step={4}
                 title="Contención y Desconexión"
                 description="El banco nota las travesuras financieras y apaga las redes internacionales para frenar la salida de fondos, salvando parte del dinero."
-                icon={ShieldCheck}
+                icon="🛡️"
                 isLast={true}
               />
             </div>
@@ -150,11 +139,11 @@ export default function App() {
           <section className="lg:col-span-5 space-y-8">
             {/* Tarjeta de Modus Operandi */}
             <div className="bg-gradient-to-br from-pink-400 to-purple-400 p-8 rounded-[2.5rem] shadow-xl shadow-pink-300/40 relative overflow-hidden text-white transform transition hover:scale-[1.02]">
-              <div className="absolute -top-6 -right-6 p-4 opacity-20">
-                <Ghost size={140} />
+              <div className="absolute -top-6 -right-6 p-4 opacity-20 text-[7rem]">
+                👻
               </div>
               <h3 className="text-2xl font-black mb-4 flex items-center gap-2 relative z-10">
-                <Sparkles size={24} className="text-yellow-300" />
+                <span className="text-yellow-300 text-2xl">✨</span>
                 La Cortina de Humo
               </h3>
               <p className="text-pink-100 mb-6 relative z-10 text-sm leading-relaxed font-medium">
@@ -177,7 +166,7 @@ export default function App() {
             {/* Tarjeta de Lecciones */}
             <div className="bg-white/80 p-8 rounded-[2.5rem] border-4 border-white shadow-xl shadow-pink-100/50 backdrop-blur-sm">
               <h3 className="text-2xl font-black text-pink-800 mb-4 flex items-center gap-2">
-                <ShieldCheck size={24} className="text-pink-500" />
+                <span className="text-pink-500 text-2xl">🛡️</span>
                 Impacto y Lecciones
               </h3>
               <div className="space-y-4 text-sm text-pink-700 font-medium">
@@ -198,10 +187,10 @@ export default function App() {
           <p>🌸 {new Date().getFullYear()} Reporte de Ciberseguridad Adorable.</p>
           <div className="flex gap-4">
             <span className="flex items-center gap-1 hover:text-pink-700 transition-colors cursor-pointer bg-white px-3 py-1 rounded-full shadow-sm">
-              <Globe size={14} /> Fuentes Públicas
+              🌐 Fuentes Públicas
             </span>
             <span className="flex items-center gap-1 hover:text-pink-700 transition-colors cursor-pointer bg-white px-3 py-1 rounded-full shadow-sm">
-              <ShieldCheck size={14} /> CSIRT Chile
+              🛡️ CSIRT Chile
             </span>
           </div>
         </footer>
